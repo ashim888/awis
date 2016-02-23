@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 
 ```
 
-###Sending a UrlInfo request
+###Sending a TrafficHistory request
 ```
 >>> from myawis import *
 >>> obj=CallAwis('www.domain.com','History',Access_Key_ID,Secret_Access_Key)
