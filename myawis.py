@@ -56,7 +56,5 @@ class CallAwis(object):
 		signature = self.create_signature()
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
-		# print url
 		r=requests.get(url)
-		# h = BeautifulSoup(r.text, "html5lib")
-		print r.text
+		return r.text
