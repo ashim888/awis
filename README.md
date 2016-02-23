@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 
 ```
 
-#### RESPONSE GROUP
+#### UrlInfo RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
 URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 
@@ -38,7 +38,7 @@ URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 | SiteData 		| Title, description, and date the site was created|
 
 
-#### META-RESPONSE GROUP
+#### UrlInfo META-RESPONSE GROUP
 
 | Response Group| Data Returned    | 
 | --------------|------------------|
@@ -46,6 +46,8 @@ URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 | TrafficData   | Traffic rank and usage statistics (equivalent to ResponseGroup=Rank,UsageStats)|
 | ContentData  	| Information about the site's content (equivalent to ResponseGroup=SiteData,AdultContent,Popups,Speed,Language)|
 
-
-
+####TrafficHistory RESPONSE GROUP
+| Response Group| Data Returned    | 
+| --------------|------------------|
+| History  		| The TrafficHistory action returns the daily Alexa Traffic Rank, Reach per Million Users, and Unique Page Views per Million Users for each day since August 2007. |
 
