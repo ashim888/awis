@@ -12,6 +12,10 @@ class CallAwis(object):
 		self.responsegroup=responsegroup
 		self.access_id = access_id
 		self.secret_access_key = secret_access_key
+		self.SignatureVersion = "2"
+		self.SignatureMethod = "HmacSHA256"
+		self.ServiceHost = "awis.amazonaws.com"
+		self.PATH = "/"
 
 	def create_timestamp(self):
 	    now = datetime.datetime.now()
@@ -26,31 +30,21 @@ class CallAwis(object):
 	def create_signature(self):
 	    Uri = self.create_uri(self.params)
 	    msg = "\n".join(["GET", self.ServiceHost, self.PATH, Uri])
-	    hmac_signature = hmac.new(self.secret, msg, hashlib.sha256)
+	    hmac_signature = hmac.new(self.secret_access_key, msg, hashlib.sha256)
 	    signature = base64.b64encode(hmac_signature.digest())
 	    return urllib.quote(signature)
 
 	def urlinfo(self):
 		#Query Options  # refer to AWIS API reference for full details.
-		Action = "UrlInfo" 
-		Url = self.domainname
-		ResponseGroup = self.responsegroup
-
-		#Config Options
-		self.AWSAccessKeyId = self.access_id
-		self.secret = self.secret_access_key
-		SignatureVersion = "2"
-		SignatureMethod = "HmacSHA256"
-		self.ServiceHost = "awis.amazonaws.com"
-		self.PATH = "/"
+		Action = "UrlInfo"
 		self.params = {
 	    'Action':Action,
-	    'Url':Url,
-	    'ResponseGroup':ResponseGroup,
-	    'SignatureVersion':SignatureVersion,
-	    'SignatureMethod':SignatureMethod,
+	    'Url':self.domainname,
+	    'ResponseGroup':self.responsegroup,
+	    'SignatureVersion':self.SignatureVersion,
+	    'SignatureMethod':self.SignatureMethod,
 	    'Timestamp': self.create_timestamp(),
-	    'AWSAccessKeyId':self.AWSAccessKeyId,
+	    'AWSAccessKeyId':self.access_id,
 	    }
 
 		uri = self.create_uri(self.params)
@@ -59,3 +53,26 @@ class CallAwis(object):
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
 		r=requests.get(url)
 		print r.text
+
+	def traffichistory(self):
+		Action="TrafficHistory"
+		self.params={
+		'Action':Action,
+		'AWSAccessKeyId':self.access_id,
+		'SignatureMethod':self.SignatureMethod,
+		'SignatureVersion':self.SignatureVersion,
+		'Timestamp':self.create_timestamp(),
+		'Url':self.domainname,
+		'ResponseGroup':self.responsegroup,
+		}
+		uri = self.create_uri(self.params)
+		signature = self.create_signature()
+
+		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
+		r=requests.get(url)
+		print r.text
+
+
+
+
+
