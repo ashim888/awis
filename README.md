@@ -1,6 +1,14 @@
 # awis
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
+#clone the project and create a virtual env
+
+```
+$ virtualenv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+
 ###Sending a request
 ```
 >>> from myawis import *
@@ -41,10 +49,3 @@ URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 
 
 
-clone the project and create a virtual env
-
-```
-$ virtualenv env
-$ source env/bin/activate
-$ pip install -r requirements.txt
-```
