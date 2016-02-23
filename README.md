@@ -9,7 +9,7 @@ $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
 
-###Sending a request
+###Sending a UrlInfo request
 ```
 >>> from myawis import *
 >>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
@@ -17,6 +17,14 @@ $ pip install -r requirements.txt
 
 ```
 
+###Sending a UrlInfo request
+```
+>>> from myawis import *
+>>> obj=CallAwis('www.domain.com','History',Access_Key_ID,Secret_Access_Key)
+>>> obj.traffichistory(RANGE,START)
+
+NOTE: RANGE and START are optional if not present then it would use default Range=31 and START=20070801
+```
 #### UrlInfo RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
 URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
