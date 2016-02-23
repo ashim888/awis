@@ -15,6 +15,7 @@ class CallAwis(object):
 		self.SignatureVersion = "2"
 		self.SignatureMethod = "HmacSHA256"
 		self.ServiceHost = "awis.amazonaws.com"
+		self.range="31"
 		self.PATH = "/"
 
 	def create_timestamp(self):
@@ -54,7 +55,7 @@ class CallAwis(object):
 		r=requests.get(url)
 		return r.text
 
-	def traffichistory(self):
+	def traffichistory(self,myrange='31',start='20070801'):
 		Action="TrafficHistory"
 		self.params={
 		'Action':Action,
@@ -64,13 +65,16 @@ class CallAwis(object):
 		'Timestamp':self.create_timestamp(),
 		'Url':self.domainname,
 		'ResponseGroup':self.responsegroup,
+		'Range':myrange,
+		'Start':start,
 		}
 		uri = self.create_uri(self.params)
 		signature = self.create_signature()
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
+		print url
 		r=requests.get(url)
-		return r.text
+		print r.text
 
 
 
