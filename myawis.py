@@ -52,7 +52,7 @@ class CallAwis(object):
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
 		r=requests.get(url)
-		print r.text
+		return r.text
 
 	def traffichistory(self):
 		Action="TrafficHistory"
@@ -70,7 +70,7 @@ class CallAwis(object):
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
 		r=requests.get(url)
-		print r.text
+		return r.text
 
 
 
