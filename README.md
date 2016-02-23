@@ -1,9 +1,17 @@
 # awis
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
+###Sending a request
+```
+>>> from myawis import *
+>>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
+>>> obj.urlinfo()
+
+```
+
 #### RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
-
+URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 | Response Group| Data Returned    | 
 | --------------|------------------|
 | RelatedLinks  | Up to 11 related links|
@@ -20,16 +28,16 @@ As provided by Alexa web information Service, Response Groups can be of followin
 | SiteData 		| Title, description, and date the site was created|
 
 
+#### META-RESPONSE GROUP
+
+| Response Group| Data Returned    | 
+| --------------|------------------|
+| Related  		| Up to 11 related links and up to 3 DMOZ categories (equivalent to ResponseGroup=RelatedLinks,Categories)|
+| TrafficData   | Traffic rank and usage statistics (equivalent to ResponseGroup=Rank,UsageStats)|
+| ContentData  	| Information about the site's content (equivalent to ResponseGroup=SiteData,AdultContent,Popups,Speed,Language)|
 
 
 
-###Sending a request
-```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
->>> obj.urlinfo()
-
-```
 
 clone the project and create a virtual env
 
