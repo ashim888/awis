@@ -12,6 +12,8 @@ A python script that generates a custom url and query string used to query Amazo
 #### RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
 URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
+
+
 | Response Group| Data Returned    | 
 | --------------|------------------|
 | RelatedLinks  | Up to 11 related links|
