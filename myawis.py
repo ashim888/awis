@@ -7,8 +7,9 @@ import requests
 import sys
 
 class CallAwis(object):
-	def __init__(self,domainname, access_id, secret_access_key):
+	def __init__(self,domainname,responsegroup, access_id, secret_access_key):
 		self.domainname=domainname
+		self.responsegroup=responsegroup
 		self.access_id = access_id
 		self.secret_access_key = secret_access_key
 
@@ -33,7 +34,7 @@ class CallAwis(object):
 		#Query Options  # refer to AWIS API reference for full details.
 		Action = "UrlInfo" 
 		Url = self.domainname
-		ResponseGroup = "RankByCountry"
+		ResponseGroup = self.responsegroup
 
 		#Config Options
 		self.AWSAccessKeyId = self.access_id
@@ -57,4 +58,4 @@ class CallAwis(object):
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
 		r=requests.get(url)
-		return r.text
+		print r.text
