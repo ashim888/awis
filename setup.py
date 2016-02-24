@@ -1,20 +1,19 @@
-
 from setuptools import setup, find_packages
-from codecs import open
-from os import path
+# from codecs import open
+# from os import path
 
 
-here = path.abspath(path.dirname(__file__))
-# Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+# here = path.abspath(path.dirname(__file__))
+# # Get the long description from the README file
+# with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+#     long_description = f.read()
 
 setup(
     # Application name:
     name="myawis",
 
     # Version number (initial):
-    version="0.2.3",
+    version="0.2.4",
 
     # Application author details:
     author="Ashim Lamichhane",
@@ -32,9 +31,9 @@ setup(
     #Keywords
     keywords='python awis api call',
     #
-    # license="LICENSE.txt",
+    license='GNU General Public License v3.0',
     description="A simple AWIS python wrapper",
-    long_description=long_description,
+    long_description=open('README.rst').read(),
     classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha
