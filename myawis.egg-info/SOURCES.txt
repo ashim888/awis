@@ -1,0 +1,10 @@
+MANIFEST.in
+README.rst
+setup.py
+myawis/__init__.py
+myawis.egg-info/PKG-INFO
+myawis.egg-info/SOURCES.txt
+myawis.egg-info/dependency_links.txt
+myawis.egg-info/entry_points.txt
+myawis.egg-info/requires.txt
+myawis.egg-info/top_level.txt
