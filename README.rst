@@ -1,7 +1,7 @@
 # awis
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
-#if pip or easy_install doesnt work just because of failing to import other packages then please do run the following command
+####if pip or easy_install doesnt work just because of failing to import other packages then please do run the following command
 
 ```
 $ pip install -r requirements.txt
