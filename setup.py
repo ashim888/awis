@@ -14,15 +14,16 @@ setup(
     name="myawis",
 
     # Version number (initial):
-    version="0.1.7",
+    version="0.1.9",
 
     # Application author details:
     author="Ashim Lamichhane",
     author_email="punchedrock@gmail.com",
 
     # Packages
-    packages=find_packages(),
-
+    packages=['myawis'],
+    #data_files
+    data_files=[('awis', ['LICENSE.txt', 'README.rst'])],
     # Include additional files into the package
     include_package_data=True,
 
