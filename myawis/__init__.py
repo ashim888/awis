@@ -72,7 +72,6 @@ class CallAwis(object):
 		}
 		uri = self.create_uri(self.params)
 		signature = self.create_signature()
-
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
 		r=requests.get(url)
 		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')

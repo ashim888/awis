@@ -14,7 +14,7 @@ setup(
     name="myawis",
 
     # Version number (initial):
-    version="0.1.9",
+    version="0.2.3",
 
     # Application author details:
     author="Ashim Lamichhane",
@@ -54,8 +54,7 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
-    # Dependent packages (distributions)
-    install_requires=["requests","beautifulsoup4"],
+    
     entry_points={
         'console_scripts': [
             'myawis=myawis:main',
