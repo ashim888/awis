@@ -1,4 +1,4 @@
-# awis
+# awis [![Build Status](https://travis-ci.org/ashim888/awis.svg?branch=master)](https://travis-ci.org/ashim888/awis)
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
 
