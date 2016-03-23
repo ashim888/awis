@@ -1,28 +1,24 @@
-# awis
+myawis
+======
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
-####if pip or easy_install doesnt work just because of failing to import other packages then please do run the following command
 
-```
-$ pip install -r requirements.txt
-```
+Sending a ``UrlInfo`` request
 
-###Sending a UrlInfo request
-```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
->>> obj.urlinfo()
+  from myawis import *
+  obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
+  obj.urlinfo()
 
-```
 
-###Sending a TrafficHistory request
-```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','History',Access_Key_ID,Secret_Access_Key)
->>> obj.traffichistory(RANGE,START)
 
-NOTE: RANGE and START are optional if not present then it would use default Range=31 and START=20070801
-```
+Sending a ``TrafficHistory`` request
+
+  from myawis import *
+  obj=CallAwis('www.domain.com','History',Access_Key_ID,Secret_Access_Key)
+  obj.traffichistory(RANGE,START)
+
+``NOTE``: RANGE and START are optional if not present then it would use default Range=31 and START=20070801
+
 #### UrlInfo RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
 URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
