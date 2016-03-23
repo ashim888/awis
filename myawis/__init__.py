@@ -6,6 +6,7 @@ import base64
 import requests
 import sys
 from bs4 import BeautifulSoup
+from urllib import quote
 
 class CallAwis(object):
 	def __init__(self,domainname,responsegroup, access_id, secret_access_key):
@@ -76,4 +77,37 @@ class CallAwis(object):
 		r=requests.get(url)
 		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')
 		return soup
+
+
+	def cat_browse(self,path):
+		Action='CategoryListings'
+		self.params={
+		'Action':Action,
+		'AWSAccessKeyId':self.access_id,
+		'SignatureMethod':self.SignatureMethod,
+		'SignatureVersion':self.SignatureVersion,
+		'Timestamp':self.create_timestamp(),
+		'ResponseGroup':'Listings',
+		'Path':quote(path),
+		}
+		uri = self.create_uri(self.params)
+		signature = self.create_signature()
+		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
+		# print url
+		r=requests.get(url)
+		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')
+		return soup
+
+
+
+
+
+
+
+
+
+
+
+
+
 
