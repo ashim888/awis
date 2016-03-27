@@ -1,4 +1,5 @@
-# awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) [![codecov.io](https://codecov.io/github/ashim888/awis/coverage.svg?branch=master)](https://codecov.io/github/ashim888/awis?branch=master)
+# awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/ashim888/awis/badge.svg?branch=master)](https://coveralls.io/github/ashim888/awis?branch=master)
+
 
 
 
