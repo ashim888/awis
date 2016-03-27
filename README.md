@@ -1,4 +1,7 @@
-# awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) ![codecov.io](https://codecov.io/github/ashim888/awis/branch.svg?branch=master)
+# awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) 
+[![codecov.io](https://codecov.io/github/ashim888/awis/coverage.svg?branch=master)](https://codecov.io/github/ashim888/awis?branch=master)
+
+
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
 

@@ -1,5 +1,9 @@
 myawis
 ======
+
+.. image:: https://codecov.io/github/ashim888/awis/coverage.svg?branch=master
+    :target: https://codecov.io/github/ashim888/awis?branch=master
+
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
 
