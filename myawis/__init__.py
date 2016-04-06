@@ -34,14 +34,14 @@ class CallAwis(object):
 	    Uri = self.create_uri(self.params)
 	    msg = "\n".join(["GET", self.ServiceHost, self.PATH, Uri])
 	    hmac_signature = hmac.new(self.secret_access_key, msg, hashlib.sha256)
-	    signature = base64.b64encode(hmac_signature.digest())
-	    return urllib.quote(signature)
+	    # signature = base64.b64encode(hmac_signature.digest())
+	    return urllib.quote(base64.b64encode(hmac_signature.digest()))
 
 	def urlinfo(self):
 		#Query Options  # refer to AWIS API reference for full details.
-		Action = "UrlInfo"
+		# Action = 
 		self.params = {
-	    'Action':Action,
+	    'Action':"UrlInfo",
 	    'Url':self.domainname,
 	    'ResponseGroup':self.responsegroup,
 	    'SignatureVersion':self.SignatureVersion,
@@ -59,9 +59,9 @@ class CallAwis(object):
 		return soup
 
 	def traffichistory(self,myrange='31',start='20070801'):
-		Action="TrafficHistory"
+		# Action="TrafficHistory"
 		self.params={
-		'Action':Action,
+		'Action':"TrafficHistory",
 		'AWSAccessKeyId':self.access_id,
 		'SignatureMethod':self.SignatureMethod,
 		'SignatureVersion':self.SignatureVersion,
@@ -80,9 +80,9 @@ class CallAwis(object):
 
 
 	def cat_browse(self,path):
-		Action='CategoryListings'
+		# Action=''
 		self.params={
-		'Action':Action,
+		'Action':"CategoryListings",
 		'AWSAccessKeyId':self.access_id,
 		'SignatureMethod':self.SignatureMethod,
 		'SignatureVersion':self.SignatureVersion,
