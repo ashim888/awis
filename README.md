@@ -1,7 +1,5 @@
 # awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/ashim888/awis/badge.svg?branch=master)](https://coveralls.io/github/ashim888/awis?branch=master)
-
-
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ashim888/awis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ashim888/awis/?branch=master)
 
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
