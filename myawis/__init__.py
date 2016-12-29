@@ -6,7 +6,10 @@ import base64
 import requests
 import sys
 from bs4 import BeautifulSoup
-from urllib import quote
+try:
+	from urllib import quote, urlencode
+except ImportError:
+	from  urllib.parse import quote, urlencode
 
 class CallAwis(object):
 	def __init__(self,domainname,responsegroup, access_id, secret_access_key):
@@ -28,14 +31,18 @@ class CallAwis(object):
 	def create_uri(self,params):
 	    params = [(key, params[key])
 	        for key in sorted(params.keys())]
-	    return urllib.urlencode(params)
+	    return urlencode(params)
 
 	def create_signature(self):
 	    Uri = self.create_uri(self.params)
 	    msg = "\n".join(["GET", self.ServiceHost, self.PATH, Uri])
-	    hmac_signature = hmac.new(self.secret_access_key, msg, hashlib.sha256)
-	    # signature = base64.b64encode(hmac_signature.digest())
-	    return urllib.quote(base64.b64encode(hmac_signature.digest()))
+	    try:
+	    	hmac_signature = hmac.new(self.secret_access_key, msg, hashlib.sha256)
+	    except TypeError:
+	    	hmac_signature = hmac.new(self.secret_access_key.encode('utf-8'), msg.encode('utf-8'), hashlib.sha256)
+	    signature = base64.b64encode(hmac_signature.digest())
+	    return quote(signature)
+
 
 	def urlinfo(self):
 		#Query Options  # refer to AWIS API reference for full details.
