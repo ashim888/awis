@@ -43,7 +43,6 @@ class CallAwis(object):
 	    signature = base64.b64encode(hmac_signature.digest())
 	    return quote(signature)
 
-
 	def urlinfo(self):
 		#Query Options  # refer to AWIS API reference for full details.
 		# Action = 
@@ -61,11 +60,9 @@ class CallAwis(object):
 		signature = self.create_signature()
 
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
-		r=requests.get(url)
-		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')
-		return soup
+		return self.return_output(url)
 
-	def traffichistory(self,myrange='31',start='20070801'):
+	def traffichistory(self,myrange=31,start=20070801):
 		# Action="TrafficHistory"
 		self.params={
 		'Action':"TrafficHistory",
@@ -81,9 +78,7 @@ class CallAwis(object):
 		uri = self.create_uri(self.params)
 		signature = self.create_signature()
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
-		r=requests.get(url)
-		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')
-		return soup
+		return self.return_output(url)
 
 
 	def cat_browse(self,path):
@@ -100,7 +95,10 @@ class CallAwis(object):
 		uri = self.create_uri(self.params)
 		signature = self.create_signature()
 		url = "http://%s/?%s&Signature=%s" % (self.ServiceHost, uri, signature)
-		# print url
+		return self.return_output(url)
+	
+	
+	def return_output(self,url):
 		r=requests.get(url)
 		soup=BeautifulSoup(r.text.encode('utf-8'),'xml')
 		return soup
