@@ -3,6 +3,15 @@
 
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
+## Sending a request
+```
+>>> from myawis import *
+>>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
+>>> obj.urlinfo()
+
+```
+NOTE: Use the ResponseGroup from the table below
+
 ## Sending a UrlInfo request
 ```
 >>> from myawis import *
