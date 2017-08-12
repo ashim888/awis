@@ -5,13 +5,17 @@ A python script that generates a custom url and query string used to query Amazo
 ## Sending a UrlInfo request
 ```python
 from myawis import *
+import xmltodict
+
 response_groups = ",".join(
     ["RelatedLinks", "Categories", "Rank", "ContactInfo", "RankByCountry",
      "UsageStats", "Speed", "Language", "OwnedDomains", "LinksInCount",
      "SiteData", "AdultContent"])
 obj = CallAwis(
     'www.domain.com', response_groups, Access_Key_ID, Secret_Access_Key)
-obj.urlinfo()
+urlinfo = obj.urlinfo()
+result = xmltodict.parse(
+    str(urlinfo))["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"]
 
 # For further info on response_groups check:
 # https://docs.aws.amazon.com/AlexaWebInfoService/latest/index.html?ApiReference_UrlInfoAction.html
