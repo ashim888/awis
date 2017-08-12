@@ -3,20 +3,28 @@
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
 
 ## Sending a UrlInfo request
+```python
+from myawis import *
+response_groups = ",".join(
+    ["RelatedLinks", "Categories", "Rank", "ContactInfo", "RankByCountry",
+     "UsageStats", "Speed", "Language", "OwnedDomains", "LinksInCount",
+     "SiteData", "AdultContent"])
+obj = CallAwis(
+    'www.domain.com', response_groups, Access_Key_ID, Secret_Access_Key)
+obj.urlinfo()
+
+# For further info on response_groups check:
+# https://docs.aws.amazon.com/AlexaWebInfoService/latest/index.html?ApiReference_UrlInfoAction.html
 ```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
->>> obj.urlinfo()
-```
-NOTE: Use the ResponseGroup from the table below
 
 ## Sending a TrafficHistory request
-```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','History',Access_Key_ID,Secret_Access_Key)
->>> obj.traffichistory(RANGE,START)
+```python
+from myawis import *
+obj = CallAwis('www.domain.com', 'History', Access_Key_ID, Secret_Access_Key)
+obj.traffichistory(RANGE, START)
 
-NOTE: RANGE and START are optional if not present then it would use default Range=31 and START=20070801
+# RANGE is optional. Defaults to 31
+# START is optional. Defaults to 20070801
 ```
 #### UrlInfo RESPONSE GROUP
 As provided by Alexa web information Service, Response Groups can be of following type while making a request
