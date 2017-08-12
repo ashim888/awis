@@ -1,24 +1,14 @@
 # awis ![Travis CI](https://travis-ci.org/ashim888/awis.svg?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ashim888/awis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ashim888/awis/?branch=master)
 
-
 A python script that generates a custom url and query string used to query Amazon's Alexa Web Information Service (AWIS).
-
-## Sending a request
-```
->>> from myawis import *
->>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
->>> obj.urlinfo()
-
-```
-NOTE: Use the ResponseGroup from the table below
 
 ## Sending a UrlInfo request
 ```
 >>> from myawis import *
 >>> obj=CallAwis('www.domain.com','ResponseGroup',Access_Key_ID,Secret_Access_Key)
 >>> obj.urlinfo()
-
 ```
+NOTE: Use the ResponseGroup from the table below
 
 ## Sending a TrafficHistory request
 ```
@@ -33,7 +23,7 @@ As provided by Alexa web information Service, Response Groups can be of followin
 URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 
 
-| Response Group| Data Returned    | 
+| Response Group| Data Returned    |
 | --------------|------------------|
 | RelatedLinks  | Up to 11 related links|
 | Categories    | Up to 3 DMOZ (Open Directory) categories the site belongs to|
@@ -51,7 +41,7 @@ URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 
 #### UrlInfo META-RESPONSE GROUP
 
-| Response Group| Data Returned    | 
+| Response Group| Data Returned    |
 | --------------|------------------|
 | Related  		| Up to 11 related links and up to 3 DMOZ categories (equivalent to ResponseGroup=RelatedLinks,Categories)|
 | TrafficData   | Traffic rank and usage statistics (equivalent to ResponseGroup=Rank,UsageStats)|
@@ -59,7 +49,7 @@ URL: https://docs.aws.amazon.com/AlexaWebInfoService/latest/
 
 ## TrafficHistory RESPONSE GROUP
 
-| Response Group| Data Returned    | 
+| Response Group| Data Returned    |
 | --------------|------------------|
 | History  		| The TrafficHistory action returns the daily Alexa Traffic Rank, Reach per Million Users, and Unique Page Views per Million Users for each day since August 2007. |
 
