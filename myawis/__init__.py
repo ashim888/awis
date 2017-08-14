@@ -1,10 +1,8 @@
 import datetime
-import urllib
 import hmac
 import hashlib
 import base64
 import requests
-import sys
 import xmltodict
 from bs4 import BeautifulSoup
 try:
