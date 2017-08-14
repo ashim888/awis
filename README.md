@@ -56,6 +56,7 @@ pprint.pprint(flatten_urlinfo(urlinfo))
  'Country.US.Contribution.PageViews': '21.0%',
  'Country.US.Contribution.Users': '21.3%',
  'Country.US.Rank': '45',
+ 'OutputTimestamp': '2017-08-14T18:48:45.026723',
  'Related.DataUrl.#text': 'github.com',
  'Related.DataUrl.@type': 'canonical',
  'RelatedLink.0.DataUrl.#text': 'zenofshen.com/posts/ajax-sortable-lists-tutorial',

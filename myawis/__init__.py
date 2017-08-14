@@ -31,7 +31,7 @@ class CallAwis(object):
         self.range = "31"
         self.PATH = "/"
 
-    def create_timestamp(self):
+    def create_timestamp(self=None):
         now = datetime.datetime.now()
         timestamp = now.isoformat()
         return timestamp
@@ -155,4 +155,5 @@ def flatten_urlinfo(urlinfo, shorter_keys=True):
     _result = {}
     info = xmltodict.parse(str(urlinfo))
     flatten(info["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"])
+    _result["OutputTimestamp"] = CallAwis.create_timestamp()
     return _result
