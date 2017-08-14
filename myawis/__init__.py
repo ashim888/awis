@@ -5,6 +5,7 @@ import hashlib
 import base64
 import requests
 import sys
+import xmltodict
 from bs4 import BeautifulSoup
 try:
     from urllib import quote, urlencode
@@ -104,3 +105,46 @@ class CallAwis(object):
         r = requests.get(url)
         soup = BeautifulSoup(r.text.encode('utf-8'), 'xml')
         return soup
+
+
+def flatten_urlinfo(urlinfo):
+    """ Takes a urlinfo object and returns a flat dictionary."""
+    def flatten(value, prefix=""):
+        if str(value) == value:  # is_string, compatible with python 2 and 3
+            _result[prefix[1:]] = value
+            return
+        try:
+            len(value)
+        except (AttributeError, TypeError):  # a leaf
+            _result[prefix[1:]] = value
+            return
+
+        try:
+            items = value.items()
+        except AttributeError:  # an iterable, but not a dict
+            if prefix == ".TrafficData.RankByCountry.Country":
+                for v in value:
+                    country = v.pop("@Code")
+                    flatten(v, ".".join([prefix, country]))
+            elif prefix in [".Related.RelatedLinks.RelatedLink",
+                            ".Related.Categories.CategoryData"]:
+                for i, v in enumerate(value):
+                    flatten(v, ".".join([prefix, str(i)]))
+            elif value[0].get("TimeRange"):
+                for v in value:
+                    time_range = ".".join(tuple(v.pop("TimeRange").items())[0])
+                    # python 3 odict_items don't support indexing
+                    if v.get("DataUrl"):
+                        time_range = ".".join([v.pop("DataUrl"), time_range])
+                    flatten(v, ".".join([prefix, time_range]))
+            else:
+                msg = prefix + " contains a list we don't know how to flatten."
+                raise NotImplementedError(msg)
+        else:  # a dict, go one level deeper
+            for k, v in items:
+                flatten(v, ".".join([prefix, k]))
+
+    _result = {}
+    flatten(xmltodict.parse(
+        str(urlinfo))["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"])
+    return _result
