@@ -21,14 +21,14 @@ setup(
 
     # Packages
     packages=['myawis'],
-    #data_files
+    # data_files
     data_files=[('awis', ['LICENSE.txt', 'README.rst'])],
     # Include additional files into the package
     include_package_data=True,
 
     # Details
     url="https://github.com/ashim888/awis",
-    #Keywords
+    # Keywords
     keywords='python awis api call',
     #
     license='GNU General Public License v3.0',
