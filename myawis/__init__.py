@@ -16,6 +16,19 @@ URLINFO_RESPONSE_GROUPS = ",".join(
      "SiteData", "AdultContent"])
 
 
+def create_timestamp():
+    now = datetime.datetime.now()
+    timestamp = now.isoformat()
+    return timestamp
+
+
+def is_string(obj):
+    try:
+        return isinstance(obj, basestring)  # python 2
+    except NameError:
+        return isinstance(obj, str)  # python 3
+
+
 class CallAwis(object):
 
     def __init__(self, domainname, responsegroup, access_id, secret_access_key):
@@ -28,11 +41,6 @@ class CallAwis(object):
         self.ServiceHost = "awis.amazonaws.com"
         self.range = "31"
         self.PATH = "/"
-
-    def create_timestamp(self=None):
-        now = datetime.datetime.now()
-        timestamp = now.isoformat()
-        return timestamp
 
     def create_uri(self, params):
         params = [(key, params[key])
@@ -60,7 +68,7 @@ class CallAwis(object):
             'ResponseGroup': self.responsegroup,
             'SignatureVersion': self.SignatureVersion,
             'SignatureMethod': self.SignatureMethod,
-            'Timestamp': self.create_timestamp(),
+            'Timestamp': create_timestamp(),
             'AWSAccessKeyId': self.access_id,
         }
 
@@ -77,7 +85,7 @@ class CallAwis(object):
             'AWSAccessKeyId': self.access_id,
             'SignatureMethod': self.SignatureMethod,
             'SignatureVersion': self.SignatureVersion,
-            'Timestamp': self.create_timestamp(),
+            'Timestamp': create_timestamp(),
             'Url': self.domainname,
             'ResponseGroup': self.responsegroup,
             'Range': myrange,
@@ -95,7 +103,7 @@ class CallAwis(object):
             'AWSAccessKeyId': self.access_id,
             'SignatureMethod': self.SignatureMethod,
             'SignatureVersion': self.SignatureVersion,
-            'Timestamp': self.create_timestamp(),
+            'Timestamp': create_timestamp(),
             'ResponseGroup': 'Listings',
             'Path': quote(path),
         }
@@ -113,7 +121,7 @@ class CallAwis(object):
 def flatten_urlinfo(urlinfo, shorter_keys=True):
     """ Takes a urlinfo object and returns a flat dictionary."""
     def flatten(value, prefix=""):
-        if str(value) == value:  # is_string, compatible with python 2 and 3
+        if is_string(value):
             _result[prefix[1:]] = value
             return
         try:
@@ -153,5 +161,5 @@ def flatten_urlinfo(urlinfo, shorter_keys=True):
     _result = {}
     info = xmltodict.parse(str(urlinfo))
     flatten(info["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"])
-    _result["OutputTimestamp"] = CallAwis.create_timestamp()
+    _result["OutputTimestamp"] = create_timestamp()
     return _result
