@@ -12,6 +12,11 @@ try:
 except ImportError:
     from urllib.parse import quote, urlencode
 
+URLINFO_RESPONSE_GROUPS = ",".join(
+    ["RelatedLinks", "Categories", "Rank", "ContactInfo", "RankByCountry",
+     "UsageStats", "Speed", "Language", "OwnedDomains", "LinksInCount",
+     "SiteData", "AdultContent"])
+
 
 class CallAwis(object):
 
