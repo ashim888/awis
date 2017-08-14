@@ -130,7 +130,6 @@ def flatten_urlinfo(urlinfo, shorter_keys=True):
             last_prefix = prefix.split(".")[-1]
             if shorter_keys:
                 prefix = "." + last_prefix
-                print(prefix)
 
             if last_prefix == "Country":
                 for v in value:
