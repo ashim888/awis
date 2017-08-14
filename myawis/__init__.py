@@ -107,7 +107,7 @@ class CallAwis(object):
         return soup
 
 
-def flatten_urlinfo(urlinfo):
+def flatten_urlinfo(urlinfo, shorter_keys=True):
     """ Takes a urlinfo object and returns a flat dictionary."""
     def flatten(value, prefix=""):
         if str(value) == value:  # is_string, compatible with python 2 and 3
@@ -122,12 +122,16 @@ def flatten_urlinfo(urlinfo):
         try:
             items = value.items()
         except AttributeError:  # an iterable, but not a dict
-            if prefix == ".TrafficData.RankByCountry.Country":
+            last_prefix = prefix.split(".")[-1]
+            if shorter_keys:
+                prefix = "." + last_prefix
+                print(prefix)
+
+            if last_prefix == "Country":
                 for v in value:
                     country = v.pop("@Code")
                     flatten(v, ".".join([prefix, country]))
-            elif prefix in [".Related.RelatedLinks.RelatedLink",
-                            ".Related.Categories.CategoryData"]:
+            elif last_prefix in ["RelatedLink", "CategoryData"]:
                 for i, v in enumerate(value):
                     flatten(v, ".".join([prefix, str(i)]))
             elif value[0].get("TimeRange"):
@@ -145,6 +149,6 @@ def flatten_urlinfo(urlinfo):
                 flatten(v, ".".join([prefix, k]))
 
     _result = {}
-    flatten(xmltodict.parse(
-        str(urlinfo))["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"])
+    info = xmltodict.parse(str(urlinfo))
+    flatten(info["aws:UrlInfoResponse"]["Response"]["UrlInfoResult"]["Alexa"])
     return _result
