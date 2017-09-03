@@ -57,6 +57,7 @@ setup(
         "requests",
         "beautifulsoup4",
         "lxml",
+	"xmltodict"
     ],
     entry_points={
         'console_scripts': [
