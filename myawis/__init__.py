@@ -1,5 +1,6 @@
 import datetime
 import hmac
+import pytz
 import hashlib
 import base64
 import requests
@@ -17,7 +18,7 @@ URLINFO_RESPONSE_GROUPS = ",".join(
 
 
 def create_timestamp():
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(pytz.timezone("GMT"))
     timestamp = now.isoformat()
     return timestamp
 
