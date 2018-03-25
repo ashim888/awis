@@ -6,8 +6,8 @@ A python script that generates a custom url and query string used to query [Amaz
 ```python
 from myawis import *
 
-obj = CallAwis('github.com', URLINFO_RESPONSE_GROUPS, Access_Key_ID, Secret_Access_Key)
-urlinfo = obj.urlinfo()
+obj = CallAwis(Access_Key_ID, Secret_Access_Key)
+urlinfo = obj.urlinfo("www.example.com")
 ```
 More info in [the docs on UrlInfo](https://docs.aws.amazon.com/AlexaWebInfoService/latest/ApiReference_UrlInfoAction.html)
 
@@ -103,8 +103,8 @@ pprint.pprint(flatten_urlinfo(urlinfo))
 ```python
 from myawis import *
 
-obj = CallAwis('www.domain.com', 'History', Access_Key_ID, Secret_Access_Key)
-obj.traffichistory(RANGE, START)
+obj = CallAwis(Access_Key_ID, Secret_Access_Key)
+obj.traffichistory("www.example.com",RANGE, START)
 # RANGE is optional. Defaults to 31
 # START is optional. Defaults to 20070801
 ```
