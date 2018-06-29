@@ -18,7 +18,7 @@ URLINFO_RESPONSE_GROUPS = ",".join(
 
 TRAFFICINFO_RESPONSE_GROUPS = "History"
 CATEGORYBROWSE_RESPONSE_GROUPS = ",".join(["Categories", "RelatedCategories", "LanguageCategories", "LetterBars"])
-
+SITESLINKINGIN_RESPONSE_GROUP = "SitesLinkingIn"
 
 def is_string(obj):
     try:
@@ -124,7 +124,18 @@ class CallAwis(object):
 
         url, headers = self.create_v4_signature(params)
         return self.return_output(url, headers)
+    
+    def siteslinkingin(self, domain, response_group=SITESLINKINGIN_RESPONSE_GROUPS):
+        
+        params = {
+            'Action': "SitesLinkingIn",
+            'Url': domain,
+            'ResponseGroup': response_group,
+        }
 
+        url, headers = self.create_v4_signature(params)
+        return self.return_output(url, headers)
+        
     def cat_browse(self, domain, path, response_group=CATEGORYBROWSE_RESPONSE_GROUPS, descriptions='True'):
         '''
         Provide category browse information of specified domain
