@@ -125,7 +125,7 @@ class CallAwis(object):
         url, headers = self.create_v4_signature(params)
         return self.return_output(url, headers)
     
-    def siteslinkingin(self, domain, response_group=SITESLINKINGIN_RESPONSE_GROUPS):
+    def siteslinkingin(self, domain, response_group=SITESLINKINGIN_RESPONSE_GROUP):
         
         params = {
             'Action': "SitesLinkingIn",
