@@ -124,9 +124,9 @@ class CallAwis(object):
 
         url, headers = self.create_v4_signature(params)
         return self.return_output(url, headers)
-    
+
     def siteslinkingin(self, domain, response_group=SITESLINKINGIN_RESPONSE_GROUP):
-        
+
         params = {
             'Action': "SitesLinkingIn",
             'Url': domain,
@@ -135,7 +135,7 @@ class CallAwis(object):
 
         url, headers = self.create_v4_signature(params)
         return self.return_output(url, headers)
-        
+
     def cat_browse(self, domain, path, response_group=CATEGORYBROWSE_RESPONSE_GROUPS, descriptions='True'):
         '''
         Provide category browse information of specified domain
@@ -155,7 +155,21 @@ class CallAwis(object):
         return self.return_output(url, headers)
 
     def return_output(self, url, headers):
-        r = requests.get(url, headers=headers)
+        '''
+        Use Session() to keep connection open
+        Retry request until successful (handles throttling)
+        '''
+        s = requests.Session()
+
+        while True:
+                try:
+                    r = s.get(url, headers = headers)
+                    if (r.status_code == requests.codes.ok):
+                        break
+                except Exception as e:
+                        #print('Error fetching ' + url + ': ' + str(e))
+                        continue
+
         soup = BeautifulSoup(r.text.encode('utf-8'), 'xml')
         return soup
 
